@@ -2,7 +2,7 @@
   "url": "viktora6.sg-host.com/",
 
   "sections" :[
-    { "path": "headlines", "label": "headlines" },
+    { "path": "headlines", "label": "Headlines" },
     { "path": "descriptions", "label": "Descriptions" },
     { "path": "paths", "label": "Paths" }
   ],
@@ -46,12 +46,14 @@
       {
         "seq": "first",
         "label": "Description",
-        "maxChar": 90
+        "maxChar": 90,
+        "isTextarea": true
       },
       {
         "seq": "second",
         "label": "Description 2",
-        "maxChar": 90
+        "maxChar": 90,
+        "isTextarea": true
       }
     ],
     "paths": [

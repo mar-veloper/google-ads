@@ -1,16 +1,15 @@
 <template>
   <label>{{ label }}</label>
-  <input
+  <textarea
     v-bind="$attrs"
-    @input="changeVal($event.currentTarget.value, seq, modelVal)"
-    :type="type"
+    @input="changeModelVal($event.currentTarget.value, seq, modelVal)"
     :maxlength="maxChar"
   />
   <span>{{ modelVal?.[seq]?.length || 0 }}/{{ maxChar }}</span>
 </template>
 <script>
 export default {
-  name: 'Input',
+  name: 'Textarea',
   props: {
     type: {
       type: String,
@@ -23,10 +22,10 @@ export default {
     seq: String,
   },
   methods: {
-    changeVal(val, key, modelVal) {
+    changeModelVal(val, key, modelVal) {
       this.$emit('update:modelValue', { ...modelVal, [key]: val.trim() });
     },
   },
 };
 </script>
-<style></style>
+<style scoped></style>

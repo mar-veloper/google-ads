@@ -1,42 +1,40 @@
 <template>
   <h2>{{ title }}</h2>
   <div v-for="item of items" :key="item.seq">
-    <!-- <Input
+    <Textarea
+      v-if="item.isTextarea"
+      v-bind="$attrs"
+      :modelVal="modelVal"
       :maxChar="item.maxChar"
       :label="item.label"
-      :inputVal="[sec][item.seq]"
-      @input="changeVal($event.target.value)"
-    /> -->
-
-    <label>{{ item.label }}</label>
-    <input
-      type="text"
-      :maxlength="item.maxChar"
-      v-bind="$attrs"
-      @input="changeVal($event.currentTarget.value, item.seq, modelVal)"
+      :seq="item.seq"
     />
-    <span>{{ modelVal?.[item.seq]?.length || 0 }}/{{ item.maxChar }}</span>
+
+    <Input
+      v-else
+      v-bind="$attrs"
+      :modelVal="modelVal"
+      :maxChar="item.maxChar"
+      :label="item.label"
+      :seq="item.seq"
+    />
   </div>
 </template>
 <script>
-// import Input from './Input';
+import Input from './Input';
+import Textarea from './TextArea';
 
 export default {
   name: 'Section',
   components: {
-    // Input,
+    Input,
+    Textarea,
   },
   props: {
     title: String,
     sec: String,
     items: Object,
     modelVal: Object,
-  },
-
-  methods: {
-    changeVal(val, key, modelVal) {
-      this.$emit('update:modelValue', { ...modelVal, [key]: val });
-    },
   },
 };
 </script>
