@@ -6,7 +6,7 @@
       :maxlength="maxChar"
       @input="changeVal($event.target.value)"
     />
-    <span>{{ inputVal.length }}/90</span>
+    <span>{{ inputVal.length }}/{{ maxChar }}</span>
   </div>
 </template>
 <script>
@@ -15,7 +15,7 @@ export default {
   props: {
     inputVal: String,
     label: String,
-    maxChar: String,
+    maxChar: Number,
   },
   methods: {
     changeVal(val) {

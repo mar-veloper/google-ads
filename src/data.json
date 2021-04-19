@@ -1,10 +1,27 @@
 {
+  "url": "viktora6.sg-host.com/",
+
+  "sections" :[
+    { "path": "headlines", "label": "headlines" },
+    { "path": "descriptions", "label": "Descriptions" },
+    { "path": "paths", "label": "Paths" }
+  ],
+
   "stateData": {
     "headlines" : {
-      "first": "",
-      "second": "",
-      "third": ""
+      "first": null,
+      "second": null,
+      "third": null
+    },
+    "descriptions" : {
+      "first": null,
+      "second": null
+    },
+    "paths" : {
+      "first": null,
+      "second": null
     }
+    
   },
 
   "staticData": {
@@ -22,7 +39,31 @@
       {
         "seq": "third",
         "label": "Headline part 3",
+        "maxChar": 30
+      }
+    ],
+    "descriptions": [
+      {
+        "seq": "first",
+        "label": "Description",
         "maxChar": 90
+      },
+      {
+        "seq": "second",
+        "label": "Description 2",
+        "maxChar": 90
+      }
+    ],
+    "paths": [
+      {
+        "seq": "first",
+        "label": "Path 1",
+        "maxChar": 15
+      },
+      {
+        "seq": "second",
+        "label": "Path 2",
+        "maxChar": 15
       }
     ]
   }
