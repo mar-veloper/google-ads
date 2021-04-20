@@ -11,8 +11,9 @@
         :modelVal="modelVal[sec.path]"
       />
     </div>
-    <button>Create Ad</button>
+    <button :disabled="!isFormValidated">Create Ad</button>
   </form>
+  <h3>{{ validatedMessage }}</h3>
   <p>{{ joinStrings(modelVal.headlines, ' | ') }}</p>
   <p>{{ joinStrings(modelVal.descriptions, ' ') }}</p>
   <p>{{ joinStrings(modelVal.paths) }}</p>
@@ -20,7 +21,10 @@
 
 <script>
 import Section from './components/Section';
+
 import data from './data.json';
+import createSchema from './helper/createSchema';
+import createModelVal from './helper/createModelVal';
 
 export default {
   name: 'App',
@@ -29,14 +33,23 @@ export default {
   },
   data() {
     return {
-      modelVal: {
-        headlines: null,
-        descriptions: null,
-        paths: null,
-      },
+      modelVal: createModelVal(data.sections, data.staticData),
       staticData: data.staticData,
       sections: data.sections,
     };
+  },
+
+  computed: {
+    isFormValidated() {
+      return this.validateForm();
+    },
+    validatedMessage() {
+      const isValidated = this.validateForm();
+      const message = isValidated ? 'Ad is ready to be published!' : '';
+      console.log(isValidated);
+
+      return message;
+    },
   },
   methods: {
     joinStrings(items, joinWith = '/') {
@@ -44,6 +57,15 @@ export default {
       return Object.values(items)
         .filter(item => item)
         .join(`${joinWith}`);
+    },
+
+    validateForm() {
+      const paths = data.sections.map(({ path }) => path);
+      const staticData = data.staticData;
+      const modelValSchema = createSchema(paths, staticData);
+
+      const { error } = modelValSchema.validate(this.modelVal);
+      return !error;
     },
 
     handleOnSubmit(e) {
