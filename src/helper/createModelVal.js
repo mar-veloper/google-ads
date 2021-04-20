@@ -3,7 +3,7 @@ export default (sections, staticData) => {
   const paths = sections.map(({ path }) => path);
 
   paths.forEach(path => {
-    staticData[path].map(item => {
+    staticData[path]?.map(item => {
       const key = item.seq;
       const value = null;
 

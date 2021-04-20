@@ -4,7 +4,7 @@ export default (paths, items) => {
   const schema = {};
 
   paths.forEach(path => {
-    items[path].map(item => {
+    items[path]?.map(item => {
       const key = item.seq;
       const joiValidator = Joi.string()
         .alphanum()

@@ -14,17 +14,16 @@
     <button :disabled="!isFormValidated">Create Ad</button>
   </form>
   <h3>{{ validatedMessage }}</h3>
-  <p>{{ joinStrings(modelVal.headlines, ' | ') }}</p>
-  <p>{{ joinStrings(modelVal.descriptions, ' ') }}</p>
-  <p>{{ joinStrings(modelVal.paths) }}</p>
+  <p>{{ headlines }}</p>
+  <p>{{ descriptions }}</p>
+  <p>{{ paths }}</p>
 </template>
 
 <script>
 import Section from './components/Section';
 
 import data from './data.json';
-import createSchema from './helper/createSchema';
-import createModelVal from './helper/createModelVal';
+import { createSchema, createModelVal } from './helper';
 
 export default {
   name: 'App',
@@ -36,19 +35,26 @@ export default {
       modelVal: createModelVal(data.sections, data.staticData),
       staticData: data.staticData,
       sections: data.sections,
+      isFormValidated: false,
     };
   },
-
+  updated() {
+    this.$data.isFormValidated = this.validateForm();
+  },
   computed: {
-    isFormValidated() {
-      return this.validateForm();
-    },
     validatedMessage() {
       const isValidated = this.validateForm();
       const message = isValidated ? 'Ad is ready to be published!' : '';
-      console.log(isValidated);
-
       return message;
+    },
+    headlines() {
+      return this.joinStrings(this.modelVal.headlines, ' | ');
+    },
+    descriptions() {
+      return this.joinStrings(this.modelVal.descriptions, ' ');
+    },
+    paths() {
+      return this.joinStrings(this.modelVal.paths);
     },
   },
   methods: {

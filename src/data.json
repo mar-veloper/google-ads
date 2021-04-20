@@ -1,13 +1,20 @@
 {
-  "sections" :[
-    { "path": "headlines", "label": "Headlines" },
-    { "path": "descriptions", "label": "Descriptions" },
-    { "path": "paths", "label": "Paths" }
+  "sections": [
+    {
+      "path": "headlines",
+      "label": "Headlines"
+    },
+    {
+      "path": "descriptions",
+      "label": "Descriptions"
+    },
+    {
+      "path": "paths",
+      "label": "Paths"
+    }
   ],
-
   "staticData": {
     "url": "viktora6.sg-host.com/",
-
     "headlines": [
       {
         "seq": 1,
@@ -51,6 +58,5 @@
         "maxChar": 15
       }
     ]
-    
   }
 }
