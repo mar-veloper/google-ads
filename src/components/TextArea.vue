@@ -8,18 +8,12 @@
   <span>{{ modelVal?.[seq]?.length || 0 }}/{{ maxChar }}</span>
 </template>
 <script>
+import inputProps from '../commonProps/input.js';
+
 export default {
   name: 'Textarea',
   props: {
-    type: {
-      type: String,
-      default: 'text',
-    },
-    inputVal: String,
-    label: String,
-    maxChar: Number,
-    modelVal: Object,
-    seq: String,
+    ...inputProps,
   },
   methods: {
     changeModelVal(val, key, modelVal) {

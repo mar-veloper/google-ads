@@ -1,14 +1,17 @@
 <template>
   <h1 @click="log">New Ad</h1>
 
-  <form v-for="sec of sections" :key="sec.path">
-    <Section
-      v-model="modelVal[sec.path]"
-      :title="sec.label"
-      :sec="sec.path"
-      :items="staticData[sec.path]"
-      :modelVal="modelVal[sec.path]"
-    />
+  <form @submit="e => handleOnSubmit(e)">
+    <div v-for="sec of sections" :key="sec.path">
+      <Section
+        v-model="modelVal[sec.path]"
+        :title="sec.label"
+        :sec="sec.path"
+        :items="staticData[sec.path]"
+        :modelVal="modelVal[sec.path]"
+      />
+    </div>
+    <button>Create Ad</button>
   </form>
   <p>{{ joinStrings(modelVal.headlines, ' | ') }}</p>
   <p>{{ joinStrings(modelVal.descriptions, ' ') }}</p>
@@ -41,6 +44,11 @@ export default {
       return Object.values(items)
         .filter(item => item)
         .join(`${joinWith}`);
+    },
+
+    handleOnSubmit(e) {
+      e.preventDefault();
+      console.log('Hello World');
     },
   },
 };

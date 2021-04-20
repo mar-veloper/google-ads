@@ -1,56 +1,39 @@
 {
-  "url": "viktora6.sg-host.com/",
-
   "sections" :[
     { "path": "headlines", "label": "Headlines" },
     { "path": "descriptions", "label": "Descriptions" },
     { "path": "paths", "label": "Paths" }
   ],
 
-  "stateData": {
-    "headlines" : {
-      "first": null,
-      "second": null,
-      "third": null
-    },
-    "descriptions" : {
-      "first": null,
-      "second": null
-    },
-    "paths" : {
-      "first": null,
-      "second": null
-    }
-    
-  },
-
   "staticData": {
+    "url": "viktora6.sg-host.com/",
+
     "headlines": [
       {
-        "seq": "first",
+        "seq": 1,
         "label": "Headline part 1",
         "maxChar": 90
       },
       {
-        "seq": "second",
+        "seq": 2,
         "label": "Headline part 2",
         "maxChar": 90
       },
       {
-        "seq": "third",
+        "seq": 3,
         "label": "Headline part 3",
         "maxChar": 30
       }
     ],
     "descriptions": [
       {
-        "seq": "first",
+        "seq": 1,
         "label": "Description",
         "maxChar": 90,
         "isTextarea": true
       },
       {
-        "seq": "second",
+        "seq": 2,
         "label": "Description 2",
         "maxChar": 90,
         "isTextarea": true
@@ -58,12 +41,12 @@
     ],
     "paths": [
       {
-        "seq": "first",
+        "seq": 1,
         "label": "Path 1",
         "maxChar": 15
       },
       {
-        "seq": "second",
+        "seq": 2,
         "label": "Path 2",
         "maxChar": 15
       }
