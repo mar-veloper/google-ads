@@ -8,4 +8,5 @@ export default {
   maxChar: Number,
   modelVal: Object,
   seq: Number,
+  sec: String,
 };

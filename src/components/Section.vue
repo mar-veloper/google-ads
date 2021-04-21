@@ -8,6 +8,7 @@
       :maxChar="item.maxChar"
       :label="item.label"
       :seq="item.seq"
+      :sec="sec"
     />
 
     <Input
@@ -17,6 +18,7 @@
       :maxChar="item.maxChar"
       :label="item.label"
       :seq="item.seq"
+      :sec="sec"
     />
   </div>
 </template>

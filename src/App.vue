@@ -1,5 +1,5 @@
 <template>
-  <h1 @click="log">New Ad</h1>
+  <h1>New Ad</h1>
 
   <form @submit="e => handleOnSubmit(e)">
     <div v-for="sec of sections" :key="sec.path">
@@ -14,16 +14,20 @@
     <button :disabled="!isFormValidated">Create Ad</button>
   </form>
   <h3>{{ validatedMessage }}</h3>
-  <p>{{ headlines }}</p>
+  <p></p>
   <p>{{ descriptions }}</p>
   <p>{{ paths }}</p>
+
+  <div>
+    <h3>{{ headlines }}</h3>
+  </div>
 </template>
 
 <script>
 import Section from './components/Section';
 
 import data from './data.json';
-import { createSchema, createModelVal } from './helper';
+import { createSchema, createModelVal, capitalize } from './helper';
 
 export default {
   name: 'App',
@@ -48,6 +52,7 @@ export default {
       return message;
     },
     headlines() {
+      console.log(capitalize(this.modelVal.headlines));
       return this.joinStrings(this.modelVal.headlines, ' | ');
     },
     descriptions() {

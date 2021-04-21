@@ -2,14 +2,15 @@
   <label>{{ label }}</label>
   <input
     v-bind="$attrs"
-    @input="changeVal($event.currentTarget.value, seq, modelVal)"
+    @input="changeModelVal($event.currentTarget.value, seq, sec, modelVal)"
     :type="type"
     :maxlength="maxChar"
   />
   <span>{{ modelVal?.[seq]?.length || 0 }}/{{ maxChar }}</span>
 </template>
 <script>
-import inputProps from '../commonProps/input.js';
+import inputProps from '../common/props/input.js';
+import inputMethods from '../common/methods/input.js';
 
 export default {
   name: 'Input',
@@ -17,9 +18,7 @@ export default {
     ...inputProps,
   },
   methods: {
-    changeVal(val, key, modelVal) {
-      this.$emit('update:modelValue', { ...modelVal, [key]: val.trim() });
-    },
+    ...inputMethods,
   },
 };
 </script>
