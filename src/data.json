@@ -13,18 +13,19 @@
       "label": "Paths"
     }
   ],
+
   "staticData": {
     "url": "viktora6.sg-host.com/",
     "headlines": [
       {
         "seq": 1,
         "label": "Headline part 1",
-        "maxChar": 90
+        "maxChar": 30
       },
       {
         "seq": 2,
         "label": "Headline part 2",
-        "maxChar": 90
+        "maxChar": 30
       },
       {
         "seq": 3,

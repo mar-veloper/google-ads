@@ -3,6 +3,7 @@
   <input
     v-bind="$attrs"
     @input="changeModelVal($event.currentTarget.value, seq, sec, modelVal)"
+    :value="modelVal?.[seq]"
     :type="type"
     :maxlength="maxChar"
   />
@@ -22,4 +23,12 @@ export default {
   },
 };
 </script>
-<style></style>
+<style scoped>
+input {
+  padding: 8px;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  border: 0.01rem solid grey;
+  border-radius: 0.3rem;
+}
+</style>

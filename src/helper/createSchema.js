@@ -7,10 +7,10 @@ export default (paths, items) => {
     items[path]?.map(item => {
       const key = item.seq;
       const joiValidator = Joi.string()
-        .alphanum()
         .min(3)
         .max(item.maxChar)
-        .required();
+        .required()
+        .trim();
 
       return (schema[path] = {
         ...schema[path],

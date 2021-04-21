@@ -1,7 +1,6 @@
 <template>
   <h1>New Ad</h1>
-
-  <form @submit="e => handleOnSubmit(e)">
+  <form>
     <div v-for="sec of sections" :key="sec.path">
       <Section
         v-model="modelVal[sec.path]"
@@ -11,28 +10,30 @@
         :modelVal="modelVal[sec.path]"
       />
     </div>
-    <button :disabled="!isFormValidated">Create Ad</button>
   </form>
   <h3>{{ validatedMessage }}</h3>
-  <p></p>
-  <p>{{ descriptions }}</p>
-  <p>{{ paths }}</p>
-
-  <div>
-    <h3>{{ headlines }}</h3>
-  </div>
+  <Card :modelVal="modelVal" />
+  <Button
+    @click.prevent="handleOnSubmit"
+    :disabled="!isFormValidated"
+    label="Create Ad"
+  />
 </template>
 
 <script>
 import Section from './components/Section';
+import Card from './components/Card';
+import Button from './components/Button';
 
 import data from './data.json';
-import { createSchema, createModelVal, capitalize } from './helper';
+import { createSchema, createModelVal } from './helper';
 
 export default {
   name: 'App',
   components: {
     Section,
+    Card,
+    Button,
   },
   data() {
     return {
@@ -51,25 +52,8 @@ export default {
       const message = isValidated ? 'Ad is ready to be published!' : '';
       return message;
     },
-    headlines() {
-      console.log(capitalize(this.modelVal.headlines));
-      return this.joinStrings(this.modelVal.headlines, ' | ');
-    },
-    descriptions() {
-      return this.joinStrings(this.modelVal.descriptions, ' ');
-    },
-    paths() {
-      return this.joinStrings(this.modelVal.paths);
-    },
   },
   methods: {
-    joinStrings(items, joinWith = '/') {
-      if (!items) return;
-      return Object.values(items)
-        .filter(item => item)
-        .join(`${joinWith}`);
-    },
-
     validateForm() {
       const paths = data.sections.map(({ path }) => path);
       const staticData = data.staticData;
@@ -79,10 +63,30 @@ export default {
       return !error;
     },
 
-    handleOnSubmit(e) {
-      e.preventDefault();
-      console.log('Hello World');
+    handleOnSubmit() {
+      this.$data.modelVal = createModelVal(data.sections, data.staticData);
     },
   },
 };
 </script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+:root {
+  font-size: 16px;
+}
+
+body,
+html {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 1rem;
+}
+
+form {
+  width: 600px;
+  border-radius: 0.3rem;
+  box-shadow: rgba(136, 165, 191, 0.48) 0px 0px 0px 1px inset,
+    rgba(136, 165, 191, 0.9) 0px 0px 0px 1px;
+}
+</style>
