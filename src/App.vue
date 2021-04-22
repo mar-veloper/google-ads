@@ -1,7 +1,7 @@
 <template>
   <h1>New Ad</h1>
   <form>
-    <div v-for="sec of sections" :key="sec.path">
+    <div v-for="(sec, index) of sections" :key="`${index}-${sec}`">
       <Section
         v-model="modelVal[sec.path]"
         :title="sec.label"
@@ -18,12 +18,14 @@
     :disabled="!isFormValidated"
     label="Create Ad"
   />
+  <CardDeck v-if="activeAds.length" title="Active Ads" :items="activeAds" />
 </template>
 
 <script>
 import Section from './components/Section';
 import Card from './components/Card';
 import Button from './components/Button';
+import CardDeck from './components/CardDeck';
 
 import data from './data.json';
 import { createSchema, createModelVal } from './helper';
@@ -34,6 +36,7 @@ export default {
     Section,
     Card,
     Button,
+    CardDeck,
   },
   data() {
     return {
@@ -41,7 +44,17 @@ export default {
       staticData: data.staticData,
       sections: data.sections,
       isFormValidated: false,
+      activeAds: [],
     };
+  },
+  mounted() {
+    if (localStorage.getItem('activeAds')) {
+      try {
+        this.activeAds = JSON.parse(localStorage.getItem('activeAds'));
+      } catch (err) {
+        localStorage.removeItem('activeAds');
+      }
+    }
   },
   updated() {
     this.$data.isFormValidated = this.validateForm();
@@ -64,7 +77,9 @@ export default {
     },
 
     handleOnSubmit() {
-      this.$data.modelVal = createModelVal(data.sections, data.staticData);
+      this.activeAds = [this.modelVal, ...this.activeAds];
+      localStorage.setItem('activeAds', JSON.stringify(this.activeAds));
+      this.modelVal = createModelVal(data.sections, data.staticData);
     },
   },
 };
@@ -84,6 +99,7 @@ html {
 }
 
 form {
+  box-sizing: border-box;
   width: 600px;
   border-radius: 0.3rem;
   box-shadow: rgba(136, 165, 191, 0.48) 0px 0px 0px 1px inset,

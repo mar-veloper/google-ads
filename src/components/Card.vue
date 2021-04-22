@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>{{ headlines }}</h4>
-    <h5>Ad · {{ paths }}</h5>
+    <a :href="paths">Ad · {{ paths }}</a>
     <p>{{ descriptions }}</p>
   </div>
 </template>
@@ -43,31 +43,33 @@ export default {
 </script>
 <style scoped>
 div {
-  max-width: 750px;
-  margin-right: auto;
+  box-sizing: border-box;
+  max-width: 600px;
+  margin: 0 0 1rem;
   padding: 1rem;
+  font-weight: 400;
+  font-size: 1rem;
   border-radius: 0.3rem;
   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
     rgba(136, 165, 191, 0.48) -6px -2px 16px 0px;
 }
 
 h4 {
+  font-weight: 400;
   margin: 0 0 1rem;
   font-size: 1.2rem;
   color: blue;
-  font-weight: 400;
 }
 
-h5 {
+a {
   margin: 0 0 1rem;
   font-size: 1rem;
   color: green;
-  font-weight: 300;
+  font-weight: 400;
+  text-decoration: none;
 }
 
 p {
-  font-size: 1rem;
   color: grey;
-  font-weight: 400;
 }
 </style>
