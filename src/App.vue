@@ -40,14 +40,18 @@ export default {
   },
   data() {
     return {
-      modelVal: createModelVal(data.sections, data.staticData),
-      staticData: data.staticData,
-      sections: data.sections,
+      modelVal: {},
+      staticData: null,
+      sections: null,
       isFormValidated: false,
       activeAds: [],
     };
   },
   mounted() {
+    this.modelVal = createModelVal(data.sections, data.staticData);
+    this.staticData = data.staticData;
+    this.sections = data.sections;
+
     if (localStorage.getItem('activeAds')) {
       try {
         this.activeAds = JSON.parse(localStorage.getItem('activeAds'));
