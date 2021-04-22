@@ -1,7 +1,11 @@
 <template>
   <div class="form-section">
     <h2>{{ title }}</h2>
-    <div class="form-section__input" v-for="item of items" :key="item.seq">
+    <div
+      class="form-section__input"
+      v-for="(item, index) of items"
+      :key="`${index} - ${item}`"
+    >
       <Textarea
         v-if="item.isTextarea"
         v-bind="$attrs"

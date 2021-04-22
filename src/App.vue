@@ -61,21 +61,19 @@ export default {
     }
   },
   updated() {
-    this.$data.isFormValidated = this.validateForm();
+    this.isFormValidated = this.validateForm();
   },
   computed: {
     validatedMessage() {
-      const isValidated = this.validateForm();
-      const message = isValidated ? 'Ad is ready to be published!' : '';
+      const message = this.isFormValidated
+        ? 'Ad is ready to be published!'
+        : '';
       return message;
     },
   },
   methods: {
     validateForm() {
-      const paths = data.sections.map(({ path }) => path);
-      const staticData = data.staticData;
-      const modelValSchema = createSchema(paths, staticData);
-
+      const modelValSchema = createSchema(this.sections, this.staticData);
       const { error } = modelValSchema.validate(this.modelVal);
       return !error;
     },

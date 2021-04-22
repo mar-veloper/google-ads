@@ -1,10 +1,11 @@
 import Joi from 'joi';
 
-export default (paths, items) => {
+export default (sections, staticData) => {
   const schema = {};
+  const paths = sections.map(({ path }) => path);
 
   paths.forEach(path => {
-    items[path]?.map(item => {
+    staticData[path]?.map(item => {
       const key = item.seq;
       const joiValidator = Joi.string()
         .min(3)

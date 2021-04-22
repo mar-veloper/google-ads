@@ -1,7 +1,7 @@
 <template>
   <div>
     <h4>{{ headlines }}</h4>
-    <a :href="paths">Ad · {{ paths }}</a>
+    <a :href="paths" target="_">Ad · {{ paths }}</a>
     <p>{{ descriptions }}</p>
   </div>
 </template>
