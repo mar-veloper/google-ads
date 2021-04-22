@@ -7,7 +7,11 @@
 export default {
   name: 'Button',
   props: {
-    label: String,
+    label: {
+      type: String,
+      required: true,
+      default: 'Provide button label!',
+    },
   },
 };
 </script>

@@ -22,13 +22,14 @@
 </template>
 
 <script>
+import { createSchema, createModelVal } from './helper';
+
+import data from './data.json';
+
 import Section from './components/Section';
 import Card from './components/Card';
 import Button from './components/Button';
 import CardDeck from './components/CardDeck';
-
-import data from './data.json';
-import { createSchema, createModelVal } from './helper';
 
 export default {
   name: 'App',
@@ -81,7 +82,7 @@ export default {
     handleOnSubmit() {
       this.activeAds = [this.modelVal, ...this.activeAds];
       localStorage.setItem('activeAds', JSON.stringify(this.activeAds));
-      this.modelVal = createModelVal(data.sections, data.staticData);
+      this.modelVal = createModelVal(this.sections, this.staticData);
     },
   },
 };
