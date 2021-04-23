@@ -80,6 +80,9 @@ export default {
     },
 
     handleOnSubmit() {
+      const { error } = modelValSchema.validate(this.modelVal);
+      if (error) return;
+
       this.activeAds = [this.modelVal, ...this.activeAds];
       localStorage.setItem('activeAds', JSON.stringify(this.activeAds));
       this.modelVal = createModelVal(this.sections, this.staticData);
