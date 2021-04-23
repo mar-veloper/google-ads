@@ -80,6 +80,7 @@ export default {
     },
 
     handleOnSubmit() {
+      const modelValSchema = createSchema(this.sections, this.staticData);
       const { error } = modelValSchema.validate(this.modelVal);
       if (error) return;
 
